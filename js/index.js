@@ -127,6 +127,42 @@ $(function(){
             $('.tg .promotion-content .inner-box').animate({
                 'left' : -index * 1170
             })
+
         })
 
-    
+              /*二维码滑出效果 */
+      $('.qr-code .ticket').hover(function(){
+        //让二维码画出来
+        $('.qr-code div').stop(true).animate({
+            left:'-100px'
+        })
+         },function(){
+             //让二维码收回去
+             $('.qr-code div').stop(true).animate({
+                 left:0
+             })
+         })
+    /*顶部搜索框交互 */
+    $(document).scroll(function(){
+        //获取到顶部的距离
+        var topDistance = $('html, body').scrollTop();
+        //判断
+        if(topDistance>500){
+            //如果滑动距离大于500 滑下来
+          $('.top-search-box').slideDown(300)
+        } else{
+            //否侧 收回去
+         $('.top-search-box').slideUp(300)
+        }
+    })
+    /*楼梯跳转*/
+    $('.floor li').click(function(){
+        //获取索引
+        var index = $(this).index();
+        //选中每一个板块到顶部
+        var topDffset = $('.floorBox').eq(index).offset().top;
+        //让滚动条滚到这个位置
+        $('html,body').animate({
+            scrollTop:topDffset -50
+        })
+    })
